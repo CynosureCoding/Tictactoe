@@ -1,0 +1,302 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TicTacToe
+{
+    class Program
+    {
+        //Global declaration
+       
+        public static int Player = 1;
+        public static bool Playercount = true;
+        public static int counter = 1;
+        public static string input;
+        public static int strinput;
+        public static string XO;
+        public static string[,] gameInit =
+
+        {
+                { "1","2","3" },
+                { "4","5","6" },
+                { "7","8","9" }
+           };
+
+        //Global declaration
+
+
+
+        static void Main(string[] args)
+        {
+            outLine();
+            gameStart();
+            Restart();
+
+
+            Console.ReadLine();
+        }
+
+
+        public static void gameStart()
+        {
+           
+
+            do
+            {
+                playerSelection();
+               
+                    getInput();
+                
+                switch(input)
+                {
+                    case "1":
+                        if (gameInit[0, 0] == "1")
+                        {
+                            gameInit[0, 0] = XO;
+                        }
+                        else 
+                        {
+                            Console.WriteLine("Press Enterkey and Enter the correct number");
+                            Console.ReadLine();
+                            counter--;
+                        }
+                        break;
+                    case "2":
+                        if (gameInit[0, 1] == "2")
+                        {
+                            gameInit[0, 1] = XO;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Press Enterkey and Enter the correct number");
+                            Console.ReadLine();
+                            counter--;
+                        }
+                        break;
+                    case "3":
+                        if (gameInit[0, 2] == "3")
+                        {
+                            gameInit[0, 2] = XO;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Press Enterkey and Enter the correct number");
+                            Console.ReadLine();
+                            counter--;
+                        }
+                        break;
+                    case "4":
+                        if (gameInit[1, 0] == "4")
+                        {
+                            gameInit[1, 0] = XO;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Press Enterkey and Enter the correct number");
+                            Console.ReadLine();
+                            counter--;
+                        }
+                        break;
+                    case "5":
+                        if (gameInit[1, 1] == "5")
+                        {
+                            gameInit[1, 1] = XO;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Press Enterkey and Enter the correct number");
+                            Console.ReadLine();
+                            counter--;
+                        }
+                        break;
+                    case "6":
+                        if (gameInit[1, 2] == "6")
+                        {
+                            gameInit[1, 2] = XO;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Press Enterkey and Enter the correct number");
+                            Console.ReadLine();
+                            counter--;
+                        }
+                        break;
+                    case "7":
+                        if (gameInit[2, 0] == "7")
+                        {
+                            gameInit[2, 0] = XO;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Press Enterkey and Enter the correct number");
+                            Console.ReadLine();
+                            counter--;
+                        }
+                        break;
+                    case "8":
+                        if (gameInit[2, 1] == "8")
+                        {
+                            gameInit[2, 1] = XO;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Press Enterkey and Enter the correct number");
+                            Console.ReadLine();
+                            counter--;
+                        }
+                        break;
+                    case "9":
+                        if (gameInit[2, 2] == "9")
+                        {
+                            gameInit[2, 2] = XO;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Press Enterkey and Enter the correct number");
+                            Console.ReadLine();
+                            counter--;
+                        }
+
+                        break;
+
+
+                }
+                
+                Console.Clear();
+                outLine();
+
+                checkWinner();
+                counter++;
+
+            } while (counter <= 9);
+
+            
+        }
+
+
+        // Function to check winner starts here
+
+        public static void checkWinner()
+        {
+            if (gameInit[0, 0] == gameInit[0, 1] && gameInit[0, 2] == gameInit[0, 0] ||
+                  gameInit[1, 0] == gameInit[1, 1] && gameInit[1, 2] == gameInit[1, 0] ||
+                  gameInit[2, 0] == gameInit[2, 1] && gameInit[2, 2] == gameInit[2, 0] ||
+                  gameInit[0, 0] == gameInit[1, 0] && gameInit[2, 0] == gameInit[0, 0] ||
+                  gameInit[0, 1] == gameInit[1, 1] && gameInit[2, 1] == gameInit[0, 1] ||
+                  gameInit[0, 2] == gameInit[1, 2] && gameInit[2, 2] == gameInit[0, 2] ||
+                  gameInit[2, 0] == gameInit[1, 1] && gameInit[0, 2] == gameInit[2, 0] ||
+                  gameInit[0, 0] == gameInit[1, 1] && gameInit[2, 2] == gameInit[0, 0])
+            {
+                Console.WriteLine("Player{0} wins", Player);
+                Restart();
+                
+            }
+            else if (counter==9)
+            {
+                Console.WriteLine("Match is draw");
+                Restart();
+            }
+           
+        }
+        // Function to check winner ends here
+
+
+        // Restart Function starts here................
+        public static void Restart()
+        {
+
+            Console.WriteLine("Press 1 to continue 0 to exit");
+            string restartInput = Console.ReadLine();
+            if (restartInput == "1")
+            {
+                gameInit= new string[,]
+
+           {
+                { "1","2","3" },
+                { "4","5","6" },
+                { "7","8","9" }
+           };
+                Console.Clear();
+                  //counter=1;
+                counter = 1;
+                outLine();
+                gameStart();
+               
+            }
+            else if (restartInput == "0")
+            {
+                Console.Clear();
+                Console.WriteLine("Thank you for playing");
+                Console.ReadLine();
+
+            }
+        }
+        // Restart Function Ends here................
+
+        // Outline of Game starts here
+        public static void outLine()
+        {
+            Console.Clear();
+            Console.WriteLine("--------------TicTacToe-------------- ");
+            Console.WriteLine();
+            Console.WriteLine("              {0} | {1} | {2} ", gameInit[0, 0], gameInit[0, 1], gameInit[0, 2]);
+            Console.WriteLine("             ---|---|---");
+            Console.WriteLine("              {0} | {1} | {2} ", gameInit[1, 0], gameInit[1, 1], gameInit[1, 2]);
+            Console.WriteLine("             ---|---|---");
+            Console.WriteLine("              {0} | {1} | {2} ", gameInit[2, 0], gameInit[2, 1], gameInit[2, 2]);
+            Console.WriteLine();
+            Console.WriteLine("--------------Game Starts-------------- ");
+            Console.WriteLine();
+            
+        }
+
+        // Outline of Game ends here
+
+        //Player selection function starts here
+
+        public static void playerSelection()
+        {
+            if (counter%2==0)
+            {
+                Player = 2;
+               
+                Console.WriteLine("Player 2 its your turn");
+                XO = "O";
+                
+            }
+            else if (counter % 2 == 1)
+            {
+                Player = 1;
+                Playercount = true;
+                Console.WriteLine("Player 1 its your turn");
+                XO = "X";
+            }
+        }
+
+        //Player selection function ends here
+
+
+        public static void getInput()
+        {
+            input = Console.ReadLine();
+            while (!(Int32.TryParse(input, out strinput) && strinput <= 9))
+            {
+                
+                if (Int32.TryParse(input, out strinput) && strinput <= 9)
+                {
+
+                    ++counter;
+                }
+                else
+                {
+                    Console.WriteLine("Enter the correct number");
+                    input = Console.ReadLine();
+                }
+            }
+        }
+
+
+    }
+}
